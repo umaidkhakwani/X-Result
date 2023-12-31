@@ -1,0 +1,31 @@
+This Python script is designed to extract text from a PDF document, process the text using spaCy, and generate multiple-choice questions (MCQs) based on the content of the document. Here's a breakdown of the code with explanations for each function:
+
+1. **Libraries Imported**:
+   - `fitz`: PyMuPDF library used for working with PDF files.
+   - `spacy`: Natural language processing library for text analysis.
+   - `random`: Used for randomizing options in MCQs.
+   - `string`: Provides constants for ASCII characters.
+
+2. **Function Definitions**:
+    - `extract_text_from_pdf(file_path)`: Uses PyMuPDF (fitz) to extract text from the provided PDF file path.
+    - `get_paragraphs(text)`: Splits the extracted text into paragraphs or sections. The default delimiter used here is a newline character.
+    - `process_text_chunk(chunk)`: Processes text chunks using spaCy to generate MCQs. It identifies important words (nouns, verbs, adjectives, and adverbs) in sentences and creates MCQs based on these words.
+    - `save_to_file(questions, file_path)`: Saves the generated MCQs to a text file.
+
+3. **Main Function** (`main()`):
+    - Defines file paths for the input PDF, the desired number of questions to generate, and the output file path for the generated questions.
+    - Extracts text from the PDF file and splits it into paragraphs.
+    - Utilizes `multiprocessing.Pool` to process text chunks in parallel using the `process_text_chunk` function.
+    - Gathers all generated MCQs and saves them to the specified output file, limited to the number of questions specified by the user input.
+
+4. **Execution**:
+    - Checks if the script is being run directly (`if __name__ == "__main__":`) and calls the `main()` function to execute the entire process.
+
+The script involves the following steps:
+- Loading a PDF document and extracting text from it.
+- Dividing the text into paragraphs.
+- Utilizing spaCy for linguistic analysis to identify important words within sentences.
+- Generating MCQs based on the important words identified.
+- Saving the generated MCQs to a text file.
+
+Please ensure you have the required libraries installed (`fitz`, `spacy`, etc.) and replace the file paths with your specific file paths for the script to work correctly.
